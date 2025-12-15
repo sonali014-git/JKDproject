@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "dockerhubusername/cicd-demo"
+        IMAGE_NAME = "docker login -u sonalidocker11/cicd-demo"
     }
 
     stages {
@@ -16,9 +16,9 @@ pipeline {
         stage('Push Image to DockerHub') {
             steps {
                 withCredentials([usernamePassword(
-                  credentialsId: 'dockerhub',
-                  usernameVariable: 'USER',
-                  passwordVariable: 'PASS'
+                    credentialsId: 'jenkinsdocker',
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
                 )]) {
                     sh '''
                     echo $PASS | docker login -u $USER --password-stdin
@@ -35,4 +35,3 @@ pipeline {
         }
     }
 }
-
