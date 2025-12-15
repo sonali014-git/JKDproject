@@ -22,18 +22,20 @@ pipeline {
                 )]) {
                     sh '''
                     echo $PASS | docker login -u $USER --password-stdin
-                    docker push sonalidocker11/cicd-demo:latest
+                    docker push $IMAGE_NAME:latest
                     '''
                 }
             }
         }
 
         stage('Deploy to Kubernetes') {
-    steps {
-        sh '''
-        export KUBECONFIG=/var/lib/jenkins/.kube/config
-        kubectl apply -f k8s/
-        '''
-    }
-}
+            steps {
+                sh '''
+                export KUBECONFIG=/var/lib/jenkins/.kube/config
+                kubectl apply -f k8s/
+                '''
+            }
+        }
 
+    } // closes stages
+} // closes pipeline
