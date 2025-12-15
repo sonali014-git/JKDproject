@@ -22,7 +22,7 @@ pipeline {
                 )]) {
                     sh '''
                     echo $PASS | docker login -u $USER --password-stdin
-                    docker push $IMAGE_NAME:latest
+                    docker push sonalidocker11/cicd-demo:latest
                     '''
                 }
             }
