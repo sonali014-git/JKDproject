@@ -7,12 +7,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
-            steps {
-                git 'https://github.com/username/cicd-jenkins-k8s.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:latest .'
@@ -22,7 +16,7 @@ pipeline {
         stage('Push Image to DockerHub') {
             steps {
                 withCredentials([usernamePassword(
-                  credentialsId: 'dockerhub-creds',
+                  credentialsId: 'dockerhub',
                   usernameVariable: 'USER',
                   passwordVariable: 'PASS'
                 )]) {
@@ -41,3 +35,4 @@ pipeline {
         }
     }
 }
+
