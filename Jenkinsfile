@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "docker login -u sonalidocker11/cicd-demo"
+        IMAGE_NAME = "sonalidocker11/cicd-demo"
     }
 
     stages {
