@@ -7,6 +7,13 @@ pipeline {
 
     stages {
 
+        stage('Checkout Code from GitHub') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/sonali014-git/JKDproject.git'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:latest .'
@@ -36,6 +43,6 @@ pipeline {
                 '''
             }
         }
+    }
+}
 
-    } // closes stages
-} // closes pipeline
